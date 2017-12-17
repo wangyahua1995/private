@@ -56,5 +56,17 @@ return [
     "EDIT_FAILED"             => 'Save failed！',
     "NO_DATA"                 => 'No data!',
     "MOBILE"                  => 'Mobile',
-    "CATEGORY_KEY_HELP_TEXT" => 'ALPHANUM or Underscores'
+    "CATEGORY_KEY_HELP_TEXT" => 'ALPHANUM or Underscores',
+    'GOODS_TAG_INDEX' => 'Commodity management',
+    'GOODS_TAG_ADD' => 'Commodity addition',
+
+    'GOODS_ID' => 'ID',
+    'GOODS_NAME' => 'name',
+    'GOODS_CAS' => 'CAS',
+    'SPEC' => 'spec',
+    'STANDARDS' => 'standards',
+    'PURPOSE' => 'purpose',
+    'P_PRICE' => 'p_price',
+    'S_PRICE' => 's_price',
+    'UNIT' => 'unit',
 ];

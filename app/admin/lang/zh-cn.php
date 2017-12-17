@@ -156,6 +156,18 @@ return [
     "EMAIL_ACTIVATION"                   => '邮箱激活',
     "EMAIL_SUBJECT"                      => '邮件标题',
     "EMAIL_TEMPLATE"                     => '邮件模版',
-    "EMAIL_TEMPLATE_HELP_TEXT"           => '请用{$link}代替激活链接，{$username}代替用户名'
+    "EMAIL_TEMPLATE_HELP_TEXT"           => '请用{$link}代替激活链接，{$username}代替用户名',
+    'GOODS_TAG_INDEX'    => '商品管理',
+    'GOODS_TAG_ADD'    => '商品添加',
+    'GOODS_ID' => '编号',
+    'GOODS_NAME' => '名称',
+    'GOODS_CAS' => 'CAS号',
+    'SPEC' => '规格',
+    'STANDARDS' => '标准值',
+    'PURPOSE' => '用途',
+    'P_PRICE' => '进价',
+    'S_PRICE' => '售价',
+    'UNIT' => '研制单位',
+
 ];
 
