@@ -1,0 +1,130 @@
+<include file="public@header" />
+<style>
+	hr{
+		margin-top:10px;
+	}
+</style>
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:url('customer/index')}">客户列表</a></li>
+			<li class="active"><a href="{:url('customer/add')}">客户添加</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('customer/add')}">
+			<div class="form-group" style="margin-bottom: 0px;">
+				<span style="margin-left:17px;font-size:19px;">公司信息</span>
+			</div>
+			<hr>
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label"><span class="form-required">*</span>客戶名称</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" id="name" name="name">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="user_name" class="col-sm-2 control-label"><span class="form-required">*</span>姓名</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" id="user_name" name="user_name">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="mobile" class="col-sm-2 control-label"><span class="form-required">*</span>手机</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" id="mobile" name="mobile">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="address" class="col-sm-2 control-label">详细地址</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" id="address" name="address">
+				</div>
+			</div>
+
+			<div class="form-group" style="margin-bottom: 0px;">
+				<span style="margin-left:17px;font-size:19px;">财务信息</span>
+			</div>
+			<hr>
+			<div class="form-group">
+				<label for="invoice_header" class="col-sm-2 control-label"><span class="form-required">*</span>发票抬头</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" id="invoice_header" name="invoice_header">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="taxpayer_number" class="col-sm-2 control-label"><span class="form-required">*</span>纳税人识别号</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" id="taxpayer_number" name="taxpayer_number">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="finance_address" class="col-sm-2 control-label"><span class="form-required">*</span>地址</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" id="finance_address" name="finance_address">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="finance_mobile" class="col-sm-2 control-label">电话</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" id="finance_mobile" name="finance_mobile">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="account_open_bank" class="col-sm-2 control-label">开户银行</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" id="account_open_bank" name="account_open_bank">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="bank_account" class="col-sm-2 control-label">银行账号</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" id="bank_account" name="bank_account">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="customer_manager" class="col-sm-2 control-label">客户经理</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" id="customer_manager" name="customer_manager">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="customer_manager" class="col-sm-2 control-label">客户类型</label>
+				<div class="col-md-6 col-sm-10">
+					<label class="radio-inline">
+						<input type="radio" name="customer_type" value="1" checked> 普通用户</label>
+					<label class="radio-inline">
+						<input type="radio" name="customer_type" value="2"> VIP客户</label>
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label for="intergral_num" class="col-sm-2 control-label">兑换积分元</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" id="intergral_num" name="intergral_num">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="remarks" class="col-sm-2 control-label">备注</label>
+				<div class="col-md-6 col-sm-10">
+					<textarea name="remarks" id="remarks" cols="132" rows="5" style="resize:none;"></textarea>
+					<!--<input type="text" class="form-control" id="remarks" name="remarks">-->
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary js-ajax-dialog-btn">{:lang('ADD')}</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>
