@@ -9,7 +9,7 @@
 // | Author: 老猫 <thinkcmf@126.com>
 // +----------------------------------------------------------------------
 return [
-    'ADMIN_CENTER'                       => '后台管理中心',
+    'ADMIN_CENTER'                       => '标准物质网',
     'WELCOME_USER'                       => '欢迎, {:user_nickname}',
     'WEBSITE_HOME_PAGE'                  => '网站首页',
     "NICKNAME"                           => '昵称',
