@@ -1,4 +1,5 @@
 <?php
+
 namespace app\admin\controller;
 
 use cmf\controller\AdminBaseController;
@@ -33,9 +34,9 @@ class GoodsController extends AdminBaseController
         $page = $users->render();
 
         $rolesSrc = Db::name('role')->select();
-        $roles    = [];
+        $roles = [];
         foreach ($rolesSrc as $r) {
-            $roleId           = $r['id'];
+            $roleId = $r['id'];
             $roles["$roleId"] = $r;
         }
         $this->assign("page", $page);
@@ -55,30 +56,17 @@ class GoodsController extends AdminBaseController
     public function addPost()
     {
         if ($this->request->isPost()) {
-            if (!empty($_POST['role_id']) && is_array($_POST['role_id'])) {
-                $role_ids = $_POST['role_id'];
-                unset($_POST['role_id']);
-                $result = $this->validate($this->request->param(), 'User');
-                if ($result !== true) {
-                    $this->error($result);
-                } else {
-                    $_POST['user_pass'] = cmf_password($_POST['user_pass']);
-                    $result             = DB::name('user')->insertGetId($_POST);
-                    if ($result !== false) {
-                        //$role_user_model=M("RoleUser");
-                        foreach ($role_ids as $role_id) {
-                            if (cmf_get_current_admin_id() != 1 && $role_id == 1) {
-                                $this->error("为了网站的安全，非网站创建者不可创建超级管理员！");
-                            }
-                            Db::name('RoleUser')->insert(["role_id" => $role_id, "user_id" => $result]);
-                        }
-                        $this->success("添加成功！", url("user/index"));
-                    } else {
-                        $this->error("添加失败！");
-                    }
-                }
+            $postData = input('post.');
+            $postData['uid'] = session('ADMIN_ID');
+
+            $model = model('goods');
+
+            $result = $model->addGoods($postData);
+
+            if ($result !== false) {
+                $this->success("添加成功！", url("goods/index"));
             } else {
-                $this->error("请为此用户指定角色！");
+                $this->error($model->getError());
             }
 
         }
