@@ -6,6 +6,26 @@
         <li class="active"><a href="{:url('goods/index')}">{:lang('GOODS_TAG_INDEX')}</a></li>
         <li><a href="{:url('goods/add')}">{:lang('GOODS_TAG_ADD')}</a></li>
     </ul>
+    <form class="well form-inline margin-top-20" method="post" action="{:url('goods/index')}">
+        类型:
+        <select class="form-control" name="other" style="width: 100px;">
+            <option value='0'>不限</option>
+            <option value='1'>商品编号</option>
+            <option value='2'>商品名称</option>
+            <option value='3'>CAS号</option>
+            <option value='4'>ID号</option>
+        </select> &nbsp;
+        <select class="form-control" name="unit" style="width: 140px;">
+            <option value="">研制单位不限</option>
+            <?php foreach($unit as $row):?>
+            <option value="<?=$row?>"><?=$row?></option>
+            <?php endforeach;?>
+        </select> &nbsp;
+        <input type="text" class="form-control" name="search_content" style="width: 140px;" value="{:input('request.search_content/s','')}" placeholder="请输入查询内容">
+        <input type="submit" class="btn btn-primary" value="搜索" />
+        <a class="btn btn-danger" href="{:url('goods/index')}">清空</a>
+    </form>
+
 
     <table class="table table-hover table-bordered">
         <thead>
@@ -53,7 +73,7 @@
                 <td>{$vo.purpose}</td>
                 <td>{$vo.s_price}</td>
                 <td>{$vo.unit}</td>
-                <td>删除| 编辑</td>
+                <td>删除 | 编辑</td>
             </tr>
         </foreach>
         </tbody>
