@@ -23,6 +23,11 @@ class CustomerController extends AdminBaseController
 
     public function index()
     {
-        echo 1;die;
+        return $this->fetch();
+    }
+
+    public function add()
+    {
+        return $this->fetch();
     }
 }
