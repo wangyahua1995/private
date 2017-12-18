@@ -11,7 +11,7 @@
 			<li><a href="{:url('customer/index')}">客户列表</a></li>
 			<li class="active"><a href="{:url('customer/add')}">客户添加</a></li>
 		</ul>
-		<form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('customer/add')}">
+		<form method="post" class="form-horizontal  margin-top-20 ajax-form" action="" onsubmit="return false">
 			<div class="form-group" style="margin-bottom: 0px;">
 				<span style="margin-left:17px;font-size:19px;">公司信息</span>
 			</div>
@@ -103,8 +103,6 @@
 						<input type="radio" name="customer_type" value="2"> VIP客户</label>
 				</div>
 			</div>
-
-
 			<div class="form-group">
 				<label for="intergral_num" class="col-sm-2 control-label">兑换积分元</label>
 				<div class="col-md-6 col-sm-10">
@@ -120,11 +118,11 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-primary js-ajax-dialog-btn">{:lang('ADD')}</button>
+					<button type="submit"  class="btn btn-primary jq-ajax">{:lang('ADD')}</button>
 				</div>
 			</div>
 		</form>
 	</div>
-	<script src="__STATIC__/js/admin.js"></script>
+	<script src="__STATIC__/js/ajaxForm.js"></script>
 </body>
 </html>
