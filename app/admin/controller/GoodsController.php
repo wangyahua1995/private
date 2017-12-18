@@ -14,9 +14,9 @@ class GoodsController extends AdminBaseController
 
     public function index()
     {
-        $where = ["user_type" => 1];
+        $where = [];
         /**搜索条件**/
-        $user_login = $this->request->param('user_login');
+        /*$user_login = $this->request->param('user_login');
         $user_email = trim($this->request->param('user_email'));
 
         if ($user_login) {
@@ -25,23 +25,17 @@ class GoodsController extends AdminBaseController
 
         if ($user_email) {
             $where['user_email'] = ['like', "%$user_email%"];;
-        }
-        $users = Db::name('user')
+        }*/
+        $goods = model('goods')
             ->where($where)
             ->order("id DESC")
-            ->paginate(10);
+            ->paginate(3);
         // 获取分页显示
-        $page = $users->render();
+        $page = $goods->render();
 
-        $rolesSrc = Db::name('role')->select();
-        $roles = [];
-        foreach ($rolesSrc as $r) {
-            $roleId = $r['id'];
-            $roles["$roleId"] = $r;
-        }
         $this->assign("page", $page);
-        $this->assign("roles", $roles);
-        $this->assign("users", $users);
+//        $this->assign("roles", $roles);
+        $this->assign("goods", $goods);
         return $this->fetch();
     }
 
