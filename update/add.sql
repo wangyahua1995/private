@@ -32,7 +32,7 @@ CREATE TABLE `p_finance_info` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='财务信息';
 
-DROP TABLE IF EXISTS `p_customer_info`;
+DROP TABLE IF EXISTS `p_goods`;
 CREATE TABLE `p_goods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `goods_id` varchar(255) NOT NULL COMMENT '商品编号',
