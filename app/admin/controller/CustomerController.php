@@ -30,6 +30,28 @@ class CustomerController extends AdminBaseController
         return $this->fetch();
     }
 
+    public function getDataList()
+    {
+        $data = array(
+            array(
+                'id'    => 1,
+                'user'  => '王亚华',
+                'company_name' => '北京小米有限公司',
+            ),
+            array(
+                'id'    => 2,
+                'user'  => '王亚龙',
+                'company_name' => '公司名称',
+            ),
+            array(
+                'id'    => 2,
+                'user'  => '王亚龙',
+                'company_name' => '公司名称',
+            )
+        );
+        AdminBaseController::jsonTableData($data,count($data));
+    }
+
     public function add()
     {
         if ($this->request->isPost() && $this->request->isAjax()) {

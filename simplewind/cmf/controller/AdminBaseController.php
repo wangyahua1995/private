@@ -103,4 +103,15 @@ class AdminBaseController extends BaseController
         }
     }
 
+
+    public static function jsonTableData($rows, $total)
+    {
+        $ret_data = array(
+            'total' => $total,
+            'rows'   => $rows
+        );
+        echo json_encode($ret_data);
+        exit();
+    }
+
 }
