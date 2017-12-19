@@ -50,10 +50,6 @@ $(function () {
     common.init();
 
 
-    function hidden_alert() {
-        $(".alert").fadeOut("slow");
-    }
-
     /**
      * form通用提交数据
      */
