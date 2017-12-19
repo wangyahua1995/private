@@ -58,11 +58,15 @@ $(function () {
      * form通用提交数据
      */
     $(document).on('click', '.jq-ajax', function () {
+        var that = $(this);
+        var text = that.text();
         var location_url = $(this).attr('location_url');
+        that.html('提交中 <i class="fa fa-spinner fa-pulse"></i>').attr('disabled',true);
         $(".ajax-form").ajaxSubmit({
             success: function (data) {
                 if (data.code === 1) {
                     common.success(data.msg);
+                    that.html(text).attr('disabled',false);
                     setTimeout(function () {
                         if (location_url !== undefined && location_url !== null && location_url !== '') {
                             location.href = location_url;
@@ -71,6 +75,7 @@ $(function () {
                         }
                     }, 1000);
                 } else {
+                    that.html(text).attr('disabled',false);
                     common.error(data.msg);
                 }
             }
