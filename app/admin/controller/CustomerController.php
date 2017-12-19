@@ -35,7 +35,7 @@ class CustomerController extends AdminBaseController
         $data = array(
             array(
                 'id'    => 1,
-                'user'  => '王亚华',
+                'user'  => '王亚洲',
                 'company_name' => '北京小米有限公司',
             ),
             array(
