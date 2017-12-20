@@ -4,24 +4,36 @@
 	<div class="wrap js-check-wrap">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="{:url('customer/index')}">客户列表</a></li>
-			<li><a href="{:url('customer/add')}">客户添加</a></li>
 		</ul>
         <form class="well form-inline margin-top-20 J_formSearchTool">
-            用户名:
-            <input type="text" class="form-control" name="user_login" style="width: 120px;" value="{:input('request.user_login/s','')}" placeholder="请输入{:lang('USERNAME')}">
-            邮箱:
-            <input type="text" class="form-control" name="user_email" style="width: 120px;" value="{:input('request.user_email/s','')}" placeholder="请输入{:lang('EMAIL')}">
+			客户名称：
+			<input type="text" class="form-control" name="name" style="width: 200px;" value="" placeholder="请输入客户名称">
+			客户经理：
+			<select class="form-control" name="customer_manager" style="width:150px;" placeholder="请选择客户经理" >
+				<option value="">请选择客户经理</option>
+				<?php foreach($user_list as $row): ?>
+				<option value='<?=$row["id"]?>'><?=$row['user_login']?></option>
+				<?php endforeach;?>
+			</select>
             <input type="submit" class="btn btn-primary" value="搜索" />
+			<span class="btn btn-primary" title="客户添加" style="float:right" onclick="location.href='{:url('customer/add')}'"><i class="fa fa-plus-square"></i>  客户添加</span>
         </form>
 		<table class="table J_tableTool" data-toggle="table" data-pagination="true" data-sort-order="desc"
-			   data-side-pagination="server" data-page-number="1" data-page-size="1" data-query-params="paramsHand"
+			   data-side-pagination="server" data-page-number="1" data-page-size="20" data-query-params="paramsHand"
 			   data-url="{:url('Customer/getDataList')}" data-page-list="" data-table-id="customer_table">
 			<thead>
 			<tr>
 				<th data-width="50px"  data-field="id" data-sortable="true">序号</th>
-				<th data-width="200px"  data-field="user" data-align="center">用户</th>
-				<th data-width="600px" data-field="company_name">公司</th>
-				<th data-width="130px" data-formatter="operate" data-align="center">操作</th>
+				<th data-width="200px"  data-field="name" data-align="center">客户名称</th>
+				<th data-width="100px" data-field="user_name" data-align="center">姓名</th>
+				<th data-width="50px" data-field="buy_num" data-align="center">购买次数</th>
+				<th data-width="200px" data-field="address" data-align="center">详细地址</th>
+				<th data-width="100px" data-field="mobile" data-align="center">手机</th>
+				<th data-width="50px" data-field="intergral_num" data-align="center">兑换积分元</th>
+				<th data-width="50px" data-field="customer_manager_name" data-align="center">客户经理</th>
+				<th data-width="200px" data-field="remarks" data-align="center">备注</th>
+				<th data-width="150px" data-field="create_time" data-align="center">创建时间</th>
+				<th data-width="100px" data-align="center" data-formatter="operate">操作</th>
 			</tr>
 			</thead>
 		</table>
@@ -31,7 +43,8 @@
     function paramsHand(params) {
         var par = {
             page: params.offset / params.limit + 1 || 1,
-            order: params.order
+            order: params.order,
+            sort:params.sort
         };
         return par;
     }

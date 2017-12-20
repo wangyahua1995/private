@@ -34,7 +34,7 @@ $(function () {
                 if (serializeObj[this.name] === undefined) {
                     serializeObj[this.name] = this.value;
                 }
-                else if (typeof serializeObj[$form.name] === 'object') {
+                else if (typeof serializeObj[this.name] === 'object') {
                     serializeObj[this.name].push(this.value);
                 }
                 else {
@@ -87,9 +87,9 @@ $(function () {
     $('body').on('submit', 'form.J_formSearchTool', function () {
         var tableObj = $('.J_tableTool[data-table-id]');
         var formParams = common.serializeJson($(this));
-        console.log(formParams);
         tableObj.bootstrapTable('refreshOptions', {
             queryParams: function (params) {
+                params.page = params.offset / params.limit + 1 || 1;
                 params = $.extend(params, formParams);
                 return params;
             }, pageNumber: 1

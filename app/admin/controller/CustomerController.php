@@ -12,6 +12,7 @@ namespace app\admin\controller;
 
 use app\admin\model\CustomerModel;
 use cmf\controller\AdminBaseController;
+use think\Db;
 use think\Validate;
 
 class CustomerController extends AdminBaseController
@@ -25,31 +26,25 @@ class CustomerController extends AdminBaseController
         $this->CustomerModel = new CustomerModel();
     }
 
+    public function getUserList()
+    {
+        $user_list = db('user')->field('id,user_login,user_nickname')->where('user_type = 1')->select()->toArray();
+        return $user_list;
+    }
+
     public function index()
     {
+        $user_list = $this->getUserList();
+        $this->assign("user_list", $user_list);
         return $this->fetch();
     }
 
     public function getDataList()
     {
-        $data = array(
-            array(
-                'id'    => 1,
-                'user'  => '王亚华',
-                'company_name' => '北京小米有限公司',
-            ),
-            array(
-                'id'    => 2,
-                'user'  => '王亚龙',
-                'company_name' => '公司名称',
-            ),
-            array(
-                'id'    => 2,
-                'user'  => '王亚龙',
-                'company_name' => '公司名称',
-            )
-        );
-        AdminBaseController::jsonTableData($data,count($data));
+        $params = input('get.');
+        $data = $this->CustomerModel->getDataList($params);
+        $count = $this->CustomerModel->getDataCount($params);
+        AdminBaseController::jsonTableData($data,$count);
     }
 
     public function add()
@@ -57,6 +52,8 @@ class CustomerController extends AdminBaseController
         if ($this->request->isPost() && $this->request->isAjax()) {
             $this->submitAdd();
         }
+        $user_list = $this->getUserList();
+        $this->assign("user_list", $user_list);
         return $this->fetch();
     }
 
