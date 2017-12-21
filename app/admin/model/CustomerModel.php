@@ -10,6 +10,7 @@
  */
 namespace app\admin\model;
 
+use think\ArrayHelper;
 use think\Model;
 
 class CustomerModel extends Model
@@ -18,17 +19,6 @@ class CustomerModel extends Model
     public $customer_table = 'p_customer_info';
     public $finance_table  = 'p_finance_info';
     public $page_size = 20;
-
-    public function HrpArray($data,$field)
-    {
-        $new_data = array();
-        if($data){
-            foreach($data as $k=>$v){
-                $new_data[$v[$field]] = $v;
-            }
-        }
-        return $new_data;
-    }
 
     /**
      * 查询数据
@@ -51,7 +41,7 @@ class CustomerModel extends Model
         }
         $limit = ($params['page']-1)*$this->page_size.','.$this->page_size;
         $user_list = $this->table('p_user')->field('id,user_login,user_nickname')->where('user_type = 1')->select()->toArray();
-        $user_list = $this->HrpArray($user_list,'id');
+        $user_list = ArrayHelper::getArrayMap($user_list,'id');
         $data = $this->table($this->customer_table)
                 ->field('a.id,a.name,a.user_name,a.mobile,a.address,a.create_time,b.invoice_header,b.taxpayer_number,
                 b.address as finance_address,b.mobile as finance_mobile,b.account_open_bank,b.bank_account,

@@ -12,7 +12,6 @@ namespace app\admin\controller;
 
 use app\admin\model\CustomerModel;
 use cmf\controller\AdminBaseController;
-use think\Db;
 use think\Validate;
 
 class CustomerController extends AdminBaseController
