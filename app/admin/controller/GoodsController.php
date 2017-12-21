@@ -14,50 +14,43 @@ class GoodsController extends AdminBaseController
 
     public function index()
     {
-        $where = [];
+        $where = '';
         /**搜索条件**/
         $other = $this->request->param('other');
         $unit = $this->request->param('unit');
         $search_content = trim($this->request->param('search_content'));
 
         switch ($other) {
+            case 0:
+                $where .= '(goods_id like '."'%$search_content%'".' or goods_name like '."'%$search_content%'".' or goods_cas like '."'%$search_content%'".' or id like '."'%$search_content%'".')';
+                break;
             case 1:
-                $where['goods_id'] = ['like', "%$search_content%"];
+                $where .= 'goods_id like '."'%$search_content%'";
                 break;
             case 2:
-                $where['goods_name'] = ['like', "%$search_content%"];
+                $where .= 'goods_name like '."'%$search_content%'";
                 break;
             case 3:
-                $where['goods_cas'] = ['like', "%$search_content%"];
+                $where .= 'goods_cas like '."'%$search_content%'";
                 break;
             case 4:
-                $where['id'] = ['like', "%$search_content%"];
+                $where .= 'id like '."'%$search_content%'";
                 break;
             default:
                 break;
         }
 
         if ($unit != '') {
-            $where['unit'] = $unit;
+            $where != '' ? $where .= ' and ' : $where = '';
+            $where .= '  unit = '."'$unit'";
         }
         $unit = model('goods')->where('unit', 'neq', '')->group('unit')->column('unit');
 
-        if($other == 0 ){
-            $goods = model('goods')
-                ->where($where)
-                ->where('goods_id','like',"%$search_content%")
-                ->whereOr('goods_name','like',"%$search_content%")
-                ->whereOr('goods_cas','like',"%$search_content%")
-                ->whereOr('id','like',"%$search_content%")
-                ->order("id DESC")
-                ->paginate(10);
-        }else{
-            $goods = model('goods')
-                ->where($where)
-                ->order("id DESC")
-                ->paginate(10);
-        }
-echo model('goods')->getLastSql();
+        $goods = model('goods')
+            ->where($where)
+            ->order("id DESC")
+            ->paginate(10);
+
         // 获取分页显示
         $page = $goods->render();
         $this->assign("page", $page);
